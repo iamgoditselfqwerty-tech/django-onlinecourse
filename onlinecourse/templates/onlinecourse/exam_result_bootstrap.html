@@ -1,0 +1,25 @@
+{% extends 'onlinecourse/base.html' %}
+
+{% block content %}
+{% if grade > 50 %}
+  <h1 class="text-success">Congratulations!</h1>
+  <p>You passed the exam with a score of <strong>{{ grade }}</strong>.</p>
+{% else %}
+  <h1 class="text-danger">Sorry, you did not pass.</h1>
+  <p>Your score: <strong>{{ grade }}</strong>.</p>
+{% endif %}
+
+<h3>Exam Results</h3>
+<ul class="list-group">
+  {% for choice in choices %}
+    <li class="list-group-item">
+      {{ choice.choice_text }} —
+      {% if choice.is_correct %}
+        <span class="text-success">Correct</span>
+      {% else %}
+        <span class="text-danger">Incorrect</span>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}
